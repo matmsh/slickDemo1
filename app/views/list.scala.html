@@ -1,0 +1,40 @@
+@(motorcycles: List[Motorcycle])
+
+@main("View") {
+
+  <a href="@controllers.routes.Motorcycles.newMotorcycle">Add Motorcycle</a> | 
+  <a href="@controllers.routes.Motorcycles.list">Refresh</a>
+  <br/>
+  <br/>
+
+  @if(motorcycles.isEmpty) {
+     <h2>No motorcycles.</h2>
+  } else {
+      
+      <table border="1" class="bikeTable">
+       <tr> 
+             <td class="title"> Id</td>
+             <td class="title"> Make</td>
+             <td class="title"> Model </td>
+             <td class="title" > Capacity cc </td>
+             <td class="title" > Update </td>
+             <td class="title" > Delete </td>
+       </tr>
+       
+           
+      @for(bike <- motorcycles) {
+            <tr> 
+              <td> @bike.id</td>
+             <td> @bike.make</td>
+             <td> @bike.model </td>
+             <td> @bike.engineCapacity </td>
+              <td> <a href="@controllers.routes.Motorcycles.editMotorcycle(bike.id.get)">Update</a> </td>
+              <td> <a href="@controllers.routes.Motorcycles.delete(bike.id.get)">Delete</a> </td>
+              
+           </tr> 
+      }
+      
+       </table>
+  } 
+   
+}

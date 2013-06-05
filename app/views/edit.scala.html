@@ -1,0 +1,62 @@
+@(motorcycle:Form[Motorcycle])
+
+@main("Update"){
+
+
+    <style>
+        #model, #make{
+           background-color:#ccb6bd;
+        }   
+    </style>
+
+
+@motorcycle.globalError.map { error =>
+   <span class="error">@error.message</span>
+}
+
+@helper.form(action=controllers.routes.Motorcycles.update){
+     
+       
+     @helper.inputText(motorcycle("make"),'_label->"Make",'_showConstraints->false,
+                       '_help->"Read only")
+     @helper.inputText(motorcycle("model"),'_label->"Model",'_showConstraints->false,
+      '_help->"Read only")
+    
+     
+     
+     @helper.inputText(motorcycle("engineCapacity"),'_label->"Capacity in cc")  
+       
+     <input type="submit" name="send" value="Update"/>
+     <a style=" text-decoration: none;" href="@controllers.routes.Motorcycles.list">
+          <input type="button" value="Cancel"/>
+     </a>
+    
+    
+     <!--  To make Make and Model read only.  -->
+      <script>
+        $(document).ready(function(){
+            $("#make").click(function() {
+               $("#make").blur();
+            }); 
+        });    
+        
+        $(document).ready(function(){
+            $("#model").click(function() {
+               $("#model").blur();
+            }); 
+        });    
+    </script>
+  
+      
+      
+      
+}
+   
+
+
+
+
+
+
+
+}

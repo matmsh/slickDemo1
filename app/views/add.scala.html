@@ -1,0 +1,31 @@
+@(motorcycle:Form[Motorcycle])
+
+@main("Add"){
+
+@motorcycle.globalError.map { error =>
+   <span class="error">@error.message</span>
+}
+
+@helper.form(action=controllers.routes.Motorcycles.create){
+
+     The make and model of the new motorcycle must not already exist in the database. <br/>
+
+
+     @helper.inputText(motorcycle("make"),'_label->"Make")
+     @helper.inputText(motorcycle("model"),'_label->"Model")
+     @helper.inputText(motorcycle("engineCapacity"),'_label->"Capacity in cc")  
+       
+     <input type="submit" name="send" value="Add"/>
+    <a style=" text-decoration: none;" href="@controllers.routes.Motorcycles.list">
+    <input type="button" value="Cancel" /> </a>
+      
+}
+   
+
+
+
+
+
+
+
+}
